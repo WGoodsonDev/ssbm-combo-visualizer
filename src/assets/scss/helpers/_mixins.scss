@@ -1,0 +1,7 @@
+@mixin sectionPadding {
+  padding: 60px 0;
+}
+
+@mixin transition15 {
+  transition: (all 0.15s ease-out 0s);
+}
