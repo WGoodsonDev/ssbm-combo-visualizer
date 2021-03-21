@@ -1,5 +1,26 @@
 .vizOuter {
-  background-color: $mineShaft;
   width: 100%;
   height: 600px;
+  background-color: $mineShaft;
+
+  .vizInner {
+    margin: auto;
+    width: 600px;
+    height: 400px;
+    background-color: $lighterGray;
+
+    img {
+      width: inherit;
+      height: inherit;
+    }
+    svg {
+      width: inherit;
+      height: inherit;
+    }
+
+    .controlButtons {
+
+    }
+  }
 }
+
