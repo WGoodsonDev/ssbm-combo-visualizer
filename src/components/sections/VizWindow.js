@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import ControlButton from "../visualizer/control/ControlButton";
+import DebugAxes from "../visualizer/svg/DebugAxes";
 
 import Battlefield from "../../assets/stages/svg/battlefield.svg";
 import Dreamland from "../../assets/stages/svg/dreamland.svg";
@@ -38,10 +39,11 @@ function VizWindow(props) {
         <section>
             <div className={"vizOuter"}>
                 <div className={"vizInner"}>
-                    <img alt={"background"} src={stageBackgrounds[currentStageId]}/>
-                    <svg>
 
+                    <svg>
+                        <DebugAxes/>
                     </svg>
+                    <img alt={"background"} src={stageBackgrounds[currentStageId]}/>
                 </div>
                 <div className={"controlButtons"}>
                     <ControlButton buttonText={"Next Stage"} onClick={nextStage}/>
