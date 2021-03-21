@@ -1,5 +1,7 @@
 import React from "react";
 
+import DebugAxes from "../../visualizer/svg/DebugAxes";
+
 import Battlefield from "../../../assets/stages/svg/battlefield.svg";
 import Dreamland from "../../../assets/stages/svg/dreamland.svg";
 import FinalDestination from "../../../assets/stages/svg/FD.svg";
@@ -18,7 +20,13 @@ const stageBackgrounds = [
 
 function StageBackground(props) {
     return (
-        <img alt={"background"} src={stageBackgrounds[props.stageId]}/>
+        <React.Fragment>
+            <svg>
+                <DebugAxes stageId={props.stageId}/>
+            </svg>
+            <img alt={"background"} src={stageBackgrounds[props.stageId]}/>
+        </React.Fragment>
+
     );
 }
 
