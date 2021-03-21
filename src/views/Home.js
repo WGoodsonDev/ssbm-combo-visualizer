@@ -5,7 +5,7 @@ import VizWindow from "../components/sections/VizWindow";
 function Home(props){
     return (
         <React.Fragment>
-            <VizWindow/>
+            {/*<VizWindow/>*/}
         </React.Fragment>
     );
 }
