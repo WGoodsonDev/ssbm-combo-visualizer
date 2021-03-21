@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
 
 import ControlButton from "../visualizer/control/ControlButton";
+import StageBackground from "../visualizer/svg/StageBackground";
 import DebugAxes from "../visualizer/svg/DebugAxes";
 
-import Battlefield from "../../assets/stages/svg/battlefield.svg";
-import Dreamland from "../../assets/stages/svg/dreamland.svg";
-import FinalDestination from "../../assets/stages/svg/FD.svg";
-import FountainOfDreams from "../../assets/stages/svg/fountain.svg";
-import PokemonStadium from "../../assets/stages/svg/stadium.svg";
-import YoshisStory from "../../assets/stages/svg/yoshis.svg";
 
-const stageBackgrounds = [
-    Battlefield,
-    Dreamland,
-    FinalDestination,
-    FountainOfDreams,
-    PokemonStadium,
-    YoshisStory
-];
 
 function VizWindow(props) {
 
@@ -39,15 +26,14 @@ function VizWindow(props) {
         <section>
             <div className={"vizOuter"}>
                 <div className={"vizInner"}>
-
                     <svg>
                         <DebugAxes/>
                     </svg>
-                    <img alt={"background"} src={stageBackgrounds[currentStageId]}/>
+                    <StageBackground stageId={currentStageId}/>
                 </div>
                 <div className={"controlButtons"}>
-                    <ControlButton buttonText={"Next Stage"} onClick={nextStage}/>
                     <ControlButton buttonText={"Prev Stage"} onClick={prevStage}/>
+                    <ControlButton buttonText={"Next Stage"} onClick={nextStage}/>
                 </div>
             </div>
         </section>
