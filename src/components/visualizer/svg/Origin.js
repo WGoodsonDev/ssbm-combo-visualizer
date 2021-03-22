@@ -13,10 +13,6 @@ function Origin(props) {
                   x2={"0"} y2={"5"}
                   stroke={originColor}
                   strokeWidth={"2"}/>
-
-            <text x={"-200"} y={"0"} >
-                TEST TEXT
-            </text>
         </g>
     );
 }
