@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const { stageDimensions } = require('../../../util/data-scripts/Stages');
 
@@ -24,21 +24,11 @@ function DebugAxes(props) {
               strokeWidth={"2"}/>
     );
 
-    const blastZones = (
-        <rect fill={"transparent"}
-              x={`${currentStageDimensions.xMin}`}
-              y={`${currentStageDimensions.yMin}`}
-              height={`${currentStageDimensions.height}`}
-              width={`${currentStageDimensions.width}`}
-              stroke={blastZonesColor}
-              strokeWidth={"2"}/>
-    );
 
     return (
         <g>
             {horizontalAxis}
             {verticalAxis}
-            {blastZones}
         </g>
     );
 }
