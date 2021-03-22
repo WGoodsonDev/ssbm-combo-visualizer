@@ -1,35 +1,44 @@
 import React, { useState } from "react";
 
+const { stageDimensions } = require('../../../util/data-scripts/Stages');
+
 const axisColor = "green";
+const blastZonesColor = "red";
+
 
 function DebugAxes(props) {
 
-    const zeroHeight = [
-        64.77, // Battlefield
-        67.02, // Dreamland
-        57.32, // Final Destination
-        58.06, // Fountain of Dreams
-        61.86, // Pokemon Stadium
-        64.86, // Yoshi's story
-    ];
+    const currentStageDimensions = stageDimensions[props.stageId];
+
+    const horizontalAxis = (
+        <line x1={`${currentStageDimensions.xMin}`} y1={"0"}
+              x2={`${currentStageDimensions.xMax}`} y2={"0"}
+              stroke={axisColor}
+              strokeWidth={"2"}/>
+    );
+
+    const verticalAxis = (
+        <line x1={"0"} y1={`${currentStageDimensions.yMin}`}
+              x2={"0"} y2={`${currentStageDimensions.yMax}`}
+              stroke={axisColor}
+              strokeWidth={"2"}/>
+    );
+
+    const blastZones = (
+        <rect fill={"transparent"}
+              x={`${currentStageDimensions.xMin}`}
+              y={`${currentStageDimensions.yMin}`}
+              height={`${currentStageDimensions.height}`}
+              width={`${currentStageDimensions.width}`}
+              stroke={blastZonesColor}
+              strokeWidth={"2"}/>
+    );
 
     return (
         <g>
-            <rect fill={"transparent"}
-                  height={"100%"}
-                  width={"100%"}
-                  stroke={"green"}
-                  strokeWidth={"2"}/>
-            {/*Horizontal Axis*/}
-            <line x1={"0"} y1={`${zeroHeight[props.stageId]}%`}
-                  x2={"100%"} y2={`${zeroHeight[props.stageId]}%`}
-                  stroke={axisColor}
-                  strokeWidth={"2"}/>
-            {/*Vertical Axis*/}
-            <line x1={"50%"} y1={"0"}
-                  x2={"50%"} y2={"100%"}
-                  stroke={axisColor}
-                  strokeWidth={"2"}/>
+            {horizontalAxis}
+            {verticalAxis}
+            {blastZones}
         </g>
     );
 }

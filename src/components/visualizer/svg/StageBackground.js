@@ -1,32 +1,20 @@
 import React from "react";
 
 import DebugAxes from "../../visualizer/svg/DebugAxes";
+import Origin from "./Origin";
 
-import Battlefield from "../../../assets/stages/svg/battlefield_downscaled_648.svg";
-import Dreamland from "../../../assets/stages/svg/dreamland_downscaled_648.svg";
-import FinalDestination from "../../../assets/stages/svg/FD_downscaled_648.svg";
-import FountainOfDreams from "../../../assets/stages/svg/fountain_downscaled_648.svg";
-import PokemonStadium from "../../../assets/stages/svg/stadium_downscaled_648.svg";
-import YoshisStory from "../../../assets/stages/svg/yoshis_downscaled_648.svg";
+const stages = require('../../../util/data-scripts/Stages');
 
-const stageBackgrounds = [
-    Battlefield,
-    Dreamland,
-    FinalDestination,
-    FountainOfDreams,
-    PokemonStadium,
-    YoshisStory
-];
 
 function StageBackground(props) {
     return (
-        <React.Fragment>
-            <svg>
+        <>
+            <svg viewBox={stages.stageViewBoxes[props.stageId]}>
                 <DebugAxes stageId={props.stageId}/>
+                <Origin/>
             </svg>
-            <img alt={"background"} src={stageBackgrounds[props.stageId]}/>
-        </React.Fragment>
-
+            <img alt={"stage background"} src={stages.stageBackgrounds[props.stageId]}/>
+        </>
     );
 }
 
