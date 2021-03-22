@@ -4,7 +4,11 @@ import ControlButton from "../visualizer/control/ControlButton";
 import StageBackground from "../visualizer/svg/StageBackground";
 
 
-
+/*
+    VizWindow is the container for the visualization.
+    It contains the actual visualization (svg windows, img tag for background), as well as
+    the control buttons for the visualization.
+ */
 
 function VizWindow(props) {
 

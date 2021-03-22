@@ -1,12 +1,12 @@
 .vizOuter {
   width: 100vw;
-  height: 600px;
+  height: 100vh;
   background-color: $mineShaft;
 
   .vizInner {
     margin: auto;
-    width: 600px;
-    height: 400px;
+    width: 80vw;
+    height: 80vh;
     background-color: $lighterGray;
 
     img {
