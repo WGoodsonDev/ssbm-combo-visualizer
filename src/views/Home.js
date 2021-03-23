@@ -7,7 +7,7 @@ function Home(props){
     return (
         <React.Fragment>
             {/*<VizWindow/>*/}
-            <FileUpload/>
+            {/*<FileUpload/>*/}
         </React.Fragment>
     );
 }

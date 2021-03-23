@@ -51,7 +51,7 @@ function FileUpload(props) {
                     <section>
                         <div className={"dragDropArea"} {...getRootProps()}>
                             <input {...getInputProps()} />
-                            <p>Drag 'n' drop some files here, or click to select files</p>
+                            <p>Drag and drop a .slp file here, or click to select file</p>
                         </div>
                     </section>
                 )}
