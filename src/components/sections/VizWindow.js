@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ControlButton from "../visualizer/control/ControlButton";
 import StageBackground from "../visualizer/svg/StageBackground";
@@ -17,6 +17,17 @@ function VizWindow(props) {
     const [originVisible, setOriginVisible] = useState(true);
     const [stageBackgroundVisible, setStageBackgroundVisible] = useState(true);
     const [blastZonesVisible, setBlastZonesVisible] = useState(true);
+
+    const [gameData, setGameData] = useState({});
+
+    const loadGameData = () => {
+
+    };
+
+    // Load game data on component mount
+    useEffect(() => {
+        loadGameData();
+    }, []);
 
     /* Stage IDs:
     0: Battlefield

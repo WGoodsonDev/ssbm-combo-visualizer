@@ -5,6 +5,15 @@ import FountainOfDreams from "../../assets/stages/svg/fountain_downscaled_648.sv
 import PokemonStadium from "../../assets/stages/svg/stadium_downscaled_648.svg";
 import YoshisStory from "../../assets/stages/svg/yoshis_downscaled_648.svg";
 
+const stageBackgrounds = {
+    0: Battlefield,
+    1: Dreamland,
+    2: FinalDestination,
+    3: FountainOfDreams,
+    4: PokemonStadium,
+    5: YoshisStory
+};
+
 const stageDimensions = {
     0: { // Battlefield
         xMin: -224,
@@ -13,7 +22,6 @@ const stageDimensions = {
         yMax: 200,
         width: 448,
         height: 308.8
-
     },
     1: { // Dreamland N64
         xMin: -255,
@@ -57,23 +65,14 @@ const stageDimensions = {
     }
 }
 
-const stageBackgrounds = [
-    Battlefield,
-    Dreamland,
-    FinalDestination,
-    FountainOfDreams,
-    PokemonStadium,
-    YoshisStory
-];
-
-const stageViewBoxes = [
-    "-224 -108.8 448 308.8",
-    "-255 -123 510 373",
-    "-246 -140 492 328",
-    "-198.75 -146.25 397.5 348.75",
-    "-230 -111 460 291",
-    "-175.7 -91 349.3 259"
-];
+const stageViewBoxes = { // minX minY width height
+    0: "-224 -108.8 448 308.8",
+    1: "-255 -123 510 373",
+    2: "-246 -140 492 328",
+    3: "-198.75 -146.25 397.5 348.75",
+    4: "-230 -111 460 291",
+    5: "-175.7 -91 349.3 259"
+};
 
 export {
     stageDimensions,
