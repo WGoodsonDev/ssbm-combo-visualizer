@@ -7,8 +7,7 @@ import GameSelect from "../components/sections/GameSelect/GameSelect";
 function Home(props){
     return (
         <React.Fragment>
-            {/*<VizWindow/>*/}
-            <GameSelect/>
+            <VizWindow/>
             <FileUpload/>
         </React.Fragment>
     );
