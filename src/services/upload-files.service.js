@@ -11,12 +11,13 @@ class UploadFilesService {
                 "Content-Type": "multipart/form-data",
             },
             onUploadProgress,
-        });
+        }).then((res) => {
+            console.log(res);
+        })
+            .catch((err) => {
+                console.log(err);
+            });
     }
-
-    // getFiles() {
-    //     return http.get("/games/getGames");
-    // }
 }
 
 export default new UploadFilesService();
