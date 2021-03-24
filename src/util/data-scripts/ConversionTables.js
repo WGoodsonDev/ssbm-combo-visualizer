@@ -1,4 +1,4 @@
-const attackTable = {
+const attackMap = {
     2: "Jab 1",
     3: "Jab 2",
     4: "Jab 3",
@@ -74,7 +74,17 @@ const characterMap = {
     32: "Ice Climbers (Popo)",
 }
 
+const stageMap  = {
+    2: "Fountain of Dreams",
+    3: "Pokémon Stadium",
+    8: "Yoshi's Story",
+    28: "Dream Land N64",
+    31: "Battlefield",
+    32: "Final Destination"
+}
+
 export {
-    attackTable,
-    characterMap
+    attackMap,
+    characterMap,
+    stageMap
 }
