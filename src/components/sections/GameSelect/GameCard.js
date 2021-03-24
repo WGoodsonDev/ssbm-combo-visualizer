@@ -1,5 +1,5 @@
 import React from "react";
-import { characterMap, attackMap, stageMap } from "../../../util/data-scripts/ConversionTables";
+import { characterMap, stageMap } from "../../../util/data-scripts/ConversionTables";
 
 
 // NAME (code) vs NAME (code): metadata

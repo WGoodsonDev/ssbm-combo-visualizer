@@ -2,7 +2,7 @@ import React from 'react';
 
 import VizWindow from "../components/sections/VizWindow";
 import FileUpload from "../components/sections/FileUpload";
-import GameSelect from "../components/sections/GameSelect/GameSelect";
+
 
 function Home(props){
     return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import ControlButton from "../visualizer/control/ControlButton";
 import StageBackground from "../visualizer/svg/StageBackground";
+import GameSelect from "./GameSelect/GameSelect";
 
 
 /*
@@ -80,6 +81,7 @@ function VizWindow(props) {
                     <ControlButton buttonText={"Toggle Origin"} onClick={toggleOrigin}/>
                     <ControlButton buttonText={"Toggle Stage Background"} onClick={toggleStageBackground}/>
                 </div>
+                <GameSelect/>
             </div>
         </section>
     )
