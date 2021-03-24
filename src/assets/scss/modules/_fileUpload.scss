@@ -1,0 +1,22 @@
+.upload {
+  width: 100vw;
+  height: 100vh;
+  background-color: $lighterGray;
+}
+
+.dragDropArea {
+  margin: auto;
+  width: 50vw;
+  height: 50vh;
+  background-color: $mineShaft;
+  text-align: center;
+  color: white;
+}
+
+.dragDropArea:hover {
+  background-color: $evenLighterGray;
+}
+
+.submitButton:hover {
+
+}
