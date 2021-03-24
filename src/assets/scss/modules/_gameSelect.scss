@@ -1,6 +1,6 @@
 .game-select {
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   background-color: $lighterGray;
   border: 2px solid black;
 
@@ -11,4 +11,6 @@
 
 .gameCard {
   border: 1px solid black;
+  width: fit-content;
+  height: fit-content;
 }
