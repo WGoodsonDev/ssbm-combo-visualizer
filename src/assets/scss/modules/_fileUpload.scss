@@ -3,6 +3,11 @@
   height: fit-content;
   background-color: $lighterGray;
   border: 2px solid black;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
 }
 
 .dragDropArea {
@@ -10,8 +15,8 @@
   width: 200px;
   height: 200px;
   background-color: $mineShaft;
-  text-align: center;
   color: white;
+  cursor: pointer;
 }
 
 .dragDropArea:hover {

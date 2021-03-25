@@ -7,9 +7,7 @@ function FileUpload(props) {
 
     const [validSlpUploaded, setValidSlpUploaded] = useState(false);
     const [currentFile, setCurrentFile] = useState(undefined);
-    const [progress, setProgress] = useState(0);
-    const [message, setMessage] = useState("");
-    const [fileInfos, setFileInfos] = useState([]);
+    const [uploadStatusMessage, setUploadStatusMessage] = useState("");
 
     const handleDrop = (acceptedFiles) => {
         if(acceptedFiles.length === 1){
@@ -22,24 +20,22 @@ function FileUpload(props) {
         } else {
             console.log("ERROR: only one file can be uploaded at a time")
         }
-
     };
 
-    const uploadFile = () => {
-        setProgress(0);
 
-        UploadService.upload(currentFile, (event) => {
-            setProgress(Math.round((100 * event.loaded) / event.total));
+    const uploadFile = async () => {
+
+        await UploadService.upload(currentFile, (event) => {
+            setUploadStatusMessage("Attempting to upload file...");
         })
             .then((response) => {
-                setMessage(response.data.message);
+                setUploadStatusMessage("File successfully uploaded")
             })
             .then((files) => {
-                setFileInfos(files.data);
+
             })
             .catch((err) => {
-                setProgress(0);
-                setMessage("ERROR: could not upload the file");
+                setUploadStatusMessage("ERROR: could not upload the file");
                 setCurrentFile(undefined);
             });
     };
@@ -56,6 +52,11 @@ function FileUpload(props) {
                     </section>
                 )}
             </Dropzone>
+            <div className={"progress"}>
+                <h5>
+                    {uploadStatusMessage}
+                </h5>
+            </div>
             <button className={"submitButton"}
                     disabled={!validSlpUploaded}
                     type={"button"}

@@ -10,6 +10,7 @@ import GameCard from "./GameCard";
 function GameSelect(props) {
 
     const [gameCardList, setGameCardList] = useState([]);
+    const [statusMessage, setStatusMessage] = useState("");
 
     const assembleGameCards = (data) => {
         data.forEach(gameData => console.log(gameData));
@@ -61,8 +62,10 @@ function GameSelect(props) {
 
     const getGames = async () => {
         console.log("Attempting to get all games. This may take a second...");
+        setStatusMessage("Attempting to get all games. This may take a second...");
         http.get("/games/getAllGames")
             .then((res) => {
+                setStatusMessage("");
                 console.log("Successfully retrieved games")
                 console.log(res);
                 assembleGameCards([...res.data]);
@@ -84,6 +87,9 @@ function GameSelect(props) {
             <button className={"clear-games-list"} onClick={clearGames}>
                 CLEAR GAMES
             </button>
+            <p>
+                {statusMessage}
+            </p>
             <div className={"game-card-list"}>
                 {gameCardList}
             </div>
