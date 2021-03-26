@@ -2,11 +2,17 @@
   width: 100vw;
   height: fit-content;
   background-color: $mineShaft;
+  text-align: center;
+
+  h3 {
+    padding: 10px;
+    color: $evenLighterGray;
+  }
 
   .vizInner {
     margin: auto;
-    width: 80vw;
-    height: 80vh;
+    width: 60vw;
+    height: 60vh;
     background-color: $lighterGray;
 
     img {

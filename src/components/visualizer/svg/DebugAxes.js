@@ -3,7 +3,6 @@ import React from "react";
 const { stageDimensions } = require('../../../util/data-scripts/Stages');
 
 const axisColor = "green";
-const blastZonesColor = "red";
 
 
 function DebugAxes(props) {

@@ -1,5 +1,5 @@
 import './App.css';
-import { withRouter, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import AppRoute from "./util/AppRoute";
 
 // Layouts

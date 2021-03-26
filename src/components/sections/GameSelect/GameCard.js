@@ -17,7 +17,7 @@ function GameCard(props) {
 
 
     return(
-        <div className={"gameCard"}>
+        <div className={"gameCard"} onClick={props.onClick}>
             <p>
                 {metadata.p1.name} ({metadata.p1.code}) vs {metadata.p2.name} ({metadata.p2.code})
             </p>

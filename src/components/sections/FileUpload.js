@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import UploadService from "../../services/upload-files.service";
 import Dropzone from "react-dropzone";
 
@@ -14,8 +13,8 @@ function FileUpload(props) {
             if(acceptedFiles[0].name.slice(-4) === ".slp"){
                 setValidSlpUploaded(true);
                 setCurrentFile(acceptedFiles[0]);
-                console.log(`Valid .slp file uploaded: ${acceptedFiles[0].name}`);
-                console.log(acceptedFiles[0]);
+                setUploadStatusMessage(`Valid .slp file selected: ${acceptedFiles[0].name};`)
+                console.log(`Valid .slp file selected: ${acceptedFiles[0].name}`);
             }
         } else {
             console.log("ERROR: only one file can be uploaded at a time")
