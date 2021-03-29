@@ -25,7 +25,7 @@ function DebugAxes(props) {
 
 
     return (
-        <g>
+        <g className={"debug-axes"}>
             {horizontalAxis}
             {verticalAxis}
         </g>

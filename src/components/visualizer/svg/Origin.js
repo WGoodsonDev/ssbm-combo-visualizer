@@ -4,7 +4,7 @@ const originColor = "blue";
 
 function Origin(props) {
     return (
-        <g>
+        <g className={"origin"}>
             <line x1={"-5"} y1={"0"}
                   x2={"5"} y2={"0"}
                   stroke={originColor}

@@ -83,8 +83,18 @@ const stageMap  = {
     32: "Final Destination"
 }
 
+const stageIdxMap = {
+    2: 3,
+    3: 4,
+    8: 5,
+    28: 1,
+    31: 0,
+    32: 2
+}
+
 export {
     attackMap,
     characterMap,
-    stageMap
+    stageMap,
+    stageIdxMap
 }

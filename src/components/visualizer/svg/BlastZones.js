@@ -19,7 +19,7 @@ function BlastZones(props) {
     );
 
     return (
-        <g>
+        <g className={"blast-zones"}>
             {blastZonesRect}
         </g>
     );

@@ -2,7 +2,6 @@
   width: 100vw;
   height: fit-content;
   background-color: $mineShaft;
-  text-align: center;
 
   h3 {
     padding: 10px;
@@ -10,26 +9,27 @@
   }
 
   .vizInner {
+    z-index: 1;
     margin: auto;
     width: 60vw;
-    height: 60vh;
+    height: 50vh;
     background-color: $lighterGray;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     img {
+      z-index: 2;
+      position: absolute;
       width: inherit;
       height: inherit;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-
     }
     svg {
+      z-index: 10;
       width: inherit;
       height: inherit;
       position: absolute;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
       // Need to flip Y scale to match coordinate system
       transform: scaleY(-1);
 

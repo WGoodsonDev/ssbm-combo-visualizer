@@ -3,9 +3,12 @@ import http from "../../http-common";
 
 import ControlButton from "../visualizer/control/ControlButton";
 import StageBackground from "../visualizer/svg/StageBackground";
+import DebugInfo from "../visualizer/svg/DebugInfo";
+import ComboViz from "../visualizer/svg/ComboViz";
 import GameSelect from "./GameSelect/GameSelect";
 
-// import { stageMap } from "../../util/data-scripts/ConversionTables";
+import { stageIdxMap } from "../../util/data-scripts/ConversionTables";
+import { stageViewBoxes } from "../../util/data-scripts/Stages";
 // import GameCard from "./GameSelect/GameCard";
 
 // const _ = require("lodash");
@@ -22,13 +25,12 @@ function VizWindow(props) {
     const [currentStageId, setCurrentStageId] = useState(0);
     const [axesVisible, setAxesVisible] = useState(true);
     const [originVisible, setOriginVisible] = useState(true);
-    const [stageBackgroundVisible, setStageBackgroundVisible] = useState(true);
     const [blastZonesVisible, setBlastZonesVisible] = useState(true);
 
     // const [gameCardList, setGameCardList] = useState([]);
     const [statusMessage, setStatusMessage] = useState("");
 
-    const [rawLoadedGame, setRawLoadedGame] = useState([]);
+    const [rawLoadedGame, setRawLoadedGame] = useState(undefined);
     // const [gameData, setGameData] = useState({});
 
     /* Stage IDs:
@@ -39,17 +41,8 @@ function VizWindow(props) {
     4: Pokemon Stadium
     5: Yoshi's Story
      */
-    const nextStage = () => {
-        if(currentStageId < 5)
-            setCurrentStageId(currentStageId + 1);
-    }
-    const prevStage = () => {
-        if(currentStageId > 0)
-            setCurrentStageId(currentStageId - 1);
-    }
     const toggleDebugAxes = () => {setAxesVisible(!axesVisible);}
     const toggleOrigin = () => {setOriginVisible(!originVisible);}
-    const toggleStageBackground = () => {setStageBackgroundVisible(!stageBackgroundVisible);}
     const toggleBlastZones = () => {setBlastZonesVisible(!blastZonesVisible);}
 
 
@@ -107,13 +100,18 @@ function VizWindow(props) {
     // };
 
     const getGame = async () => {
+        // Clear last game data
+        clearGame();
+        // Get new (random) game from DB, set as rawLoadedGame
         console.log("Attempting to get a game. This may take a second...");
         setStatusMessage("Attempting to get a game. This may take a second...");
         await http.get("/games/getRandomGame")
             .then((res) => {
                 console.log("Successfully retrieved game")
                 setStatusMessage("Successfully retrieved game");
+                console.log(res.data);
                 setRawLoadedGame(res.data);
+                setCurrentStageId(stageIdxMap[res.data.settings.stageId]);
                 // console.log(JSON.stringify(rawLoadedGame, null, 2));
             })
             .catch((err) => {
@@ -123,8 +121,7 @@ function VizWindow(props) {
     };
 
     const clearGame = () => {
-        // setGameCardList([]);
-        setRawLoadedGame([]);
+        setRawLoadedGame(undefined);
         setStatusMessage("");
     };
 
@@ -134,23 +131,25 @@ function VizWindow(props) {
         <section>
             <div className={"vizOuter"}>
                 <h3>
-                    Current Game: {rawLoadedGame.metadata?.players[0].names.netplay} ({rawLoadedGame.metadata?.players[0].names.code}) vs {rawLoadedGame.metadata?.players[1].names.netplay} ({rawLoadedGame.metadata?.players[1].names.code})
+                    { rawLoadedGame ?
+                        `Current Game: ${rawLoadedGame.metadata?.players[0].names.netplay} (${rawLoadedGame.metadata?.players[0].names.code}) vs ${rawLoadedGame.metadata?.players[1].names.netplay} (${rawLoadedGame.metadata?.players[1].names.code})`
+                        : 'No game loaded'
+                    }
                 </h3>
                 <div className={"vizInner"}>
-                    <StageBackground stageId={currentStageId}
-                                     axesVisible={axesVisible}
-                                     originVisible={originVisible}
-                                     stageBackgroundVisible={stageBackgroundVisible}
-                                     blastZonesVisible={blastZonesVisible}
-                    />
+                    <svg className={"viz-svg"} viewBox={stageViewBoxes[currentStageId]}>
+                        <DebugInfo stageId={currentStageId}
+                                   axesVisible={axesVisible}
+                                   originVisible={originVisible}
+                                   blastZonesVisible={blastZonesVisible}/>
+                        <ComboViz gameData={rawLoadedGame} stageId={currentStageId}/>
+                    </svg>
+                    <StageBackground stageId={currentStageId}/>
                 </div>
                 <div className={"controlButtons"}>
-                    <ControlButton buttonText={"Prev Stage"} onClick={prevStage}/>
-                    <ControlButton buttonText={"Next Stage"} onClick={nextStage}/>
                     <ControlButton buttonText={"Toggle Blast Zones"} onClick={toggleBlastZones}/>
                     <ControlButton buttonText={"Toggle Debug Axes"} onClick={toggleDebugAxes}/>
                     <ControlButton buttonText={"Toggle Origin"} onClick={toggleOrigin}/>
-                    <ControlButton buttonText={"Toggle Stage Background"} onClick={toggleStageBackground}/>
                 </div>
                 <GameSelect getGame={getGame}
                             clearGame={clearGame}
