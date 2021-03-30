@@ -19,6 +19,18 @@ function ComboViz(props) {
     const toggleOrigin = () => {setOriginVisible(!originVisible);}
     const toggleBlastZones = () => {setBlastZonesVisible(!blastZonesVisible);}
 
+    const nextCombo = () => {
+        if(comboArray.length && currentCombo < comboArray.length - 1){
+            setCurrentCombo(currentCombo + 1);
+        }
+    }
+
+    const prevCombo = () => {
+        if(comboArray.length && currentCombo > 0){
+            setCurrentCombo(currentCombo - 1);
+        }
+    }
+
     const loadData = () => {
         if(props.gameData){
             // Take game data, separate into combos
@@ -72,6 +84,8 @@ function ComboViz(props) {
                 <ControlButton buttonText={"Toggle Blast Zones"} onClick={toggleBlastZones}/>
                 <ControlButton buttonText={"Toggle Debug Axes"} onClick={toggleDebugAxes}/>
                 <ControlButton buttonText={"Toggle Origin"} onClick={toggleOrigin}/>
+                <ControlButton buttonText={"Previous Combo"} onClick={prevCombo}/>
+                <ControlButton buttonText={"Next Combo"} onClick={nextCombo}/>
             </div>
         </>
     );
