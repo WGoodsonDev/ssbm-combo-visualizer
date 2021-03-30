@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Combo from "./Combo";
+import {stageViewBoxes} from "../../../util/data-scripts/Stages";
+import DebugInfo from "./DebugInfo";
+import StageBackground from "./StageBackground";
+import ControlButton from "../control/ControlButton";
 
 function ComboViz(props) {
 
     const [comboArray, setComboArray] = useState([]);
     const [currentCombo, setCurrentCombo] = useState(0);
+
+    const [axesVisible, setAxesVisible] = useState(true);
+    const [originVisible, setOriginVisible] = useState(true);
+    const [blastZonesVisible, setBlastZonesVisible] = useState(true);
+
+
+    const toggleDebugAxes = () => {setAxesVisible(!axesVisible);}
+    const toggleOrigin = () => {setOriginVisible(!originVisible);}
+    const toggleBlastZones = () => {setBlastZonesVisible(!blastZonesVisible);}
 
     const loadData = () => {
         if(props.gameData){
@@ -41,10 +54,25 @@ function ComboViz(props) {
 
     return (
         <>
-            { comboArray.length ?
-                comboArray[currentCombo]
-                : null
-            }
+            <div className={"vizInner"}>
+                <svg className={"viz-svg"} viewBox={stageViewBoxes[props.stageId]}>
+                    <DebugInfo stageId={props.stageId}
+                               axesVisible={axesVisible}
+                               originVisible={originVisible}
+                               blastZonesVisible={blastZonesVisible}/>
+
+                    { comboArray.length ?
+                        comboArray[currentCombo]
+                        : null
+                    }
+                </svg>
+                <StageBackground stageId={props.stageId}/>
+            </div>
+            <div className={"controlButtons"}>
+                <ControlButton buttonText={"Toggle Blast Zones"} onClick={toggleBlastZones}/>
+                <ControlButton buttonText={"Toggle Debug Axes"} onClick={toggleDebugAxes}/>
+                <ControlButton buttonText={"Toggle Origin"} onClick={toggleOrigin}/>
+            </div>
         </>
     );
 }
