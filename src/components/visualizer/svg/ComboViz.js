@@ -14,8 +14,8 @@ function ComboViz(props) {
 
     const [curatedData, setCuratedData] = useState({});
 
-    const [axesVisible, setAxesVisible] = useState(true);
-    const [originVisible, setOriginVisible] = useState(true);
+    const [axesVisible, setAxesVisible] = useState(false);
+    const [originVisible, setOriginVisible] = useState(false);
     const [blastZonesVisible, setBlastZonesVisible] = useState(true);
 
 
@@ -41,11 +41,22 @@ function ComboViz(props) {
         }
     }
 
-    const loadData = () => {
+    const decreaseMinComboLength = () => {
+        if(minComboLength > 2)
+            setMinComboLength(minComboLength - 1);
+        extractStats();
+    }
+    const increaseMinComboLength = () => {
+        if(minComboLength < curatedData?.maxComboLength)
+            setMinComboLength(minComboLength + 1);
+        extractStats();
+    }
+
+    const extractStats = () => {
         setCurrentComboIdx(0);
         setComboComponentArray([]);
         setComboDataArray([]);
-        if (props.gameData) {
+        if(props.gameData){
             // Take game data, separate into combos and stats
             let {
                 frames,
@@ -54,8 +65,10 @@ function ComboViz(props) {
             } = props.gameData;
             // Make an array of all frames, instead of having them in an object with numbered keys
             const framesArray = Object.values(frames);
-            // Need to filter out combos under a certain length (2 to start, should be controllable)
+
+            // Need to filter out combos under a certain length
             const filteredCombos = stats.combos.filter(combo => combo.moves.length >= minComboLength);
+
             // Combine combos and their corresponding frames into one data structure
             const combosPlusFrames = filteredCombos.map(combo => {
                 const comboFrames = framesArray.slice(combo.startFrame, combo.endFrame);
@@ -65,16 +78,17 @@ function ComboViz(props) {
                 }
             });
             setComboDataArray(combosPlusFrames);
-            console.log("comboDataArray: ", comboDataArray)
+            // console.log("comboDataArray: ", comboDataArray)
 
             // Construct array of Combo components
-            const comboComponentArray = combosPlusFrames.map((comboAndFrames, idx) => {
-                return (
-                    <Combo stageId={props.stageId} data={comboAndFrames} key={idx}/>
-                );
-            });
-            setComboComponentArray(comboComponentArray);
-            console.log("comboComponentArray: ", comboComponentArray);
+            const comboComponents = combosPlusFrames.map((comboAndFrames, idx) =>
+                <Combo stageId={props.stageId}
+                       data={comboAndFrames}
+                       key={idx}
+                />
+            );
+            setComboComponentArray(comboComponents);
+            // console.log("comboComponentArray: ", comboComponentArray);
 
             // Extract detailed statistics from data
             // Stage
@@ -107,8 +121,8 @@ function ComboViz(props) {
         }
     }
 
+    useEffect(extractStats, [props.gameData]);
 
-    useEffect(loadData, [props.gameData]);
 
     return (
         <>
@@ -182,11 +196,19 @@ function ComboViz(props) {
                 : null
             }
             <div className={"control-buttons"}>
-                <ControlButton buttonText={"Toggle Blast Zones"} onClick={toggleBlastZones}/>
-                <ControlButton buttonText={"Toggle Debug Axes"} onClick={toggleDebugAxes}/>
-                <ControlButton buttonText={"Toggle Origin"} onClick={toggleOrigin}/>
-                <ControlButton buttonText={"Previous Combo"} onClick={prevCombo}/>
-                <ControlButton buttonText={"Next Combo"} onClick={nextCombo}/>
+                <div className={"row-1"}>
+                    <ControlButton buttonText={"Previous Combo"} onClick={prevCombo}/>
+                    <ControlButton buttonText={"Next Combo"} onClick={nextCombo}/>
+                </div>
+                <div className={"row-2"}>
+                    <ControlButton buttonText={"Decrease Min Combo Length"} onClick={decreaseMinComboLength}/>
+                    <ControlButton buttonText={"Increase Min Combo Length"} onClick={increaseMinComboLength}/>
+                </div>
+                <div className={"row-3"}>
+                    <ControlButton buttonText={"Toggle Blast Zones"} onClick={toggleBlastZones}/>
+                    <ControlButton buttonText={"Toggle Axes"} onClick={toggleDebugAxes}/>
+                    <ControlButton buttonText={"Toggle Origin"} onClick={toggleOrigin}/>
+                </div>
             </div>
         </>
     );

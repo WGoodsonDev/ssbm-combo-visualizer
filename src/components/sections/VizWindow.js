@@ -7,7 +7,7 @@ import DebugInfo from "../visualizer/svg/DebugInfo";
 import ComboViz from "../visualizer/svg/ComboViz";
 import GameSelect from "./GameSelect/GameSelect";
 
-import { stageIdxMap } from "../../util/data-scripts/ConversionTables";
+import { stageIdxMap, characterMap } from "../../util/data-scripts/ConversionTables";
 import { stageViewBoxes } from "../../util/data-scripts/Stages";
 // import GameCard from "./GameSelect/GameCard";
 
@@ -72,7 +72,7 @@ function VizWindow(props) {
             <div className={"viz-outer"}>
                 <h3>
                     { rawLoadedGame ?
-                        `Current Game: ${rawLoadedGame.metadata?.players[0].names.netplay} (${rawLoadedGame.metadata?.players[0].names.code}) vs ${rawLoadedGame.metadata?.players[1].names.netplay} (${rawLoadedGame.metadata?.players[1].names.code})`
+                        `Current Game: ${rawLoadedGame.metadata?.players[0].names.netplay} (${characterMap[rawLoadedGame.settings?.players[0].characterId]}) vs ${rawLoadedGame.metadata?.players[1].names.netplay} (${characterMap[rawLoadedGame.settings?.players[1].characterId]})`
                         : 'No game loaded'
                     }
                 </h3>
