@@ -60,8 +60,8 @@ function ComboViz(props) {
             const combosPlusFrames = filteredCombos.map(combo => {
                 const comboFrames = framesArray.slice(combo.startFrame, combo.endFrame);
                 return {
-                    combo,
-                    comboFrames
+                    combo: combo,
+                    comboFrames: comboFrames
                 }
             });
             setComboDataArray(combosPlusFrames);
@@ -132,13 +132,24 @@ function ComboViz(props) {
                         <caption>Current Combo Stats ({currentComboIdx + 1} / {curatedData?.totalComboCount})</caption>
                         <tbody>
                         <tr>
-                            <th>Attack Hit</th>
                             <th>Start %</th>
                             <th>End %</th>
                             <th>Damage Dealt (%)</th>
+                            <th># of Hits</th>
+                            <th>Death Combo?</th>
+                            <th>Start Frame</th>
+                            <th>End Frame</th>
+                            <th>Total Frames</th>
                         </tr>
                         <tr>
-                            {/*{comboHitArray}*/}
+                            <td>{(Math.round(comboDataArray[currentComboIdx]?.combo.startPercent + Number.EPSILON) * 100) / 100}</td>
+                            <td>{(Math.round(comboDataArray[currentComboIdx]?.combo.endPercent + Number.EPSILON) * 100) / 100}</td>
+                            <td>{(Math.round(comboDataArray[currentComboIdx]?.combo.endPercent - comboDataArray[currentComboIdx]?.combo.startPercent) * 100) / 100}</td>
+                            <td>{comboDataArray[currentComboIdx]?.combo.moves.length}</td>
+                            <td>{comboDataArray[currentComboIdx]?.combo.didKill ? "Yes" : "No"}</td>
+                            <td>{comboDataArray[currentComboIdx]?.combo.startFrame}</td>
+                            <td>{comboDataArray[currentComboIdx]?.combo.endFrame}</td>
+                            <td>{comboDataArray[currentComboIdx]?.combo.endFrame - comboDataArray[currentComboIdx]?.combo.startFrame}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -148,7 +159,6 @@ function ComboViz(props) {
                         <tr>
                             <th>Stage</th>
                             <th>Minimum Combo Length</th>
-                            <th>Current Combo</th>
                             <th>Player 1 Combos</th>
                             <th>Player 2 Combos</th>
                             <th>Total Combos</th>
@@ -159,7 +169,6 @@ function ComboViz(props) {
                         <tr>
                             <td>{curatedData?.stageName}</td>
                             <td>{minComboLength}</td>
-                            <td>{currentComboIdx + 1}</td>
                             <td>{curatedData?.p1ComboCount}</td>
                             <td>{curatedData?.p2ComboCount}</td>
                             <td>{curatedData?.totalComboCount}</td>

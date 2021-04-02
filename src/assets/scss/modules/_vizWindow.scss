@@ -12,7 +12,7 @@
   .viz-inner {
     z-index: 1;
     margin: auto;
-    width: 80vw;
+    width: 100vw;
     height: 60vh;
     background-color: $lighterGray;
     -moz-user-select: none;
@@ -33,6 +33,7 @@
       position: absolute;
       // Need to flip Y scale to match coordinate system
       transform: scaleY(-1);
+
 
       text {
         // Flip y again to have text appear right-side-up
@@ -55,8 +56,14 @@
     font-weight: bold;
     font-size: 24px;
   }
+
+  table {
+    margin: auto;
+  }
 }
 
 .control-buttons {
-  display: inline-flex;
+  width: inherit;
+  margin: auto;
+  text-align: center;
 }
