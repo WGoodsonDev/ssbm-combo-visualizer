@@ -49,6 +49,12 @@
 .stats-area {
   width: inherit;
   height: fit-content;
+  text-align: center;
+
+  caption {
+    font-weight: bold;
+    font-size: 24px;
+  }
 }
 
 .control-buttons {

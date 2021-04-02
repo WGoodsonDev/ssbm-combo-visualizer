@@ -5,13 +5,22 @@ import FountainOfDreams from "../../assets/stages/svg/fountain_downscaled_648.sv
 import PokemonStadium from "../../assets/stages/svg/stadium_downscaled_648.svg";
 import YoshisStory from "../../assets/stages/svg/yoshis_downscaled_648.svg";
 
-const stageNames = {
+const stageNamesByIndex = {
     0: "Battlefield",
     1: "Dream Land N64",
     2: "Final Destination",
     3: "Fountain of Dreams",
     4: "Pokémon Stadium",
     5: "Yoshi's Story"
+}
+
+const stageNamesById = {
+    2: "Fountain of Dreams",
+    3: "Pokémon Stadium",
+    8: "Yoshi's Story",
+    28: "Dream Land N64",
+    31: "Battlefield",
+    32: "Final Destination"
 }
 
 const stageBackgrounds = {
@@ -84,7 +93,8 @@ const stageViewBoxes = { // minX minY width height
 };
 
 export {
-    stageNames,
+    stageNamesByIndex,
+    stageNamesById,
     stageDimensions,
     stageBackgrounds,
     stageViewBoxes
