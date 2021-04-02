@@ -69,7 +69,7 @@ function VizWindow(props) {
 
     return (
         <section>
-            <div className={"vizOuter"}>
+            <div className={"viz-outer"}>
                 <h3>
                     { rawLoadedGame ?
                         `Current Game: ${rawLoadedGame.metadata?.players[0].names.netplay} (${rawLoadedGame.metadata?.players[0].names.code}) vs ${rawLoadedGame.metadata?.players[1].names.netplay} (${rawLoadedGame.metadata?.players[1].names.code})`

@@ -8,15 +8,16 @@
 
 // basics
 @import "basics/buttons",
-        "basics/links";
+        "basics/links",
+        "basics/tables";
 
 // layout
 @import "layout/header";
 
 // modules
-@import "modules/vizWindow";
-@import "modules/fileUpload";
-@import "modules/gameSelect";
+@import "modules/vizWindow",
+        "modules/fileUpload",
+        "modules/gameSelect";
 
 // pages
 @import "pages/home";

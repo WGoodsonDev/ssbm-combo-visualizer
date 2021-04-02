@@ -1,0 +1,12 @@
+table, th, td {
+  border: 2px solid $lighterGray;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 4px;
+}
+
+table {
+  margin: 20px;
+}

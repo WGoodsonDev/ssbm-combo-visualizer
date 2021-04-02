@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Combo from "./Combo";
-import {stageViewBoxes} from "../../../util/data-scripts/Stages";
+import { stageViewBoxes } from "../../../util/data-scripts/Stages";
 import DebugInfo from "./DebugInfo";
 import StageBackground from "./StageBackground";
 import ControlButton from "../control/ControlButton";
@@ -44,7 +44,7 @@ function ComboViz(props) {
             const filteredCombos = stats.combos.filter(combo => combo.moves.length >= 3);
             // Combine combos and their corresponding frames into one data structure
             const combosPlusFrames = filteredCombos.map(combo => {
-                const comboFrames = framesArray.slice(combo.startFrame, combo.endFrame + 1);
+                const comboFrames = framesArray.slice(combo.startFrame, combo.endFrame);
                 return {
                     combo,
                     comboFrames
@@ -66,7 +66,7 @@ function ComboViz(props) {
 
     return (
         <>
-            <div className={"vizInner"}>
+            <div className={"viz-inner"}>
                 <svg className={"viz-svg"} viewBox={stageViewBoxes[props.stageId]}>
                     <DebugInfo stageId={props.stageId}
                                axesVisible={axesVisible}
@@ -80,7 +80,27 @@ function ComboViz(props) {
                 </svg>
                 <StageBackground stageId={props.stageId}/>
             </div>
-            <div className={"controlButtons"}>
+            <div className={"stats-area"}>
+                <table className={"stats-table"}>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Player 1 Combos</th>
+                        <th>Player 2 Combos</th>
+                        <th>Total Combos</th>
+                        <th>Current Combo</th>
+                        <th>Damage Dealt</th>
+                    </tr>
+                    <tr>
+                        <td>{}</td>
+                        <td>{}</td>
+                        <td>{}</td>
+                        <td>{}</td>
+                        <td>{}</td>
+                        <td>{}</td>
+                    </tr>
+                </table>
+            </div>
+            <div className={"control-buttons"}>
                 <ControlButton buttonText={"Toggle Blast Zones"} onClick={toggleBlastZones}/>
                 <ControlButton buttonText={"Toggle Debug Axes"} onClick={toggleDebugAxes}/>
                 <ControlButton buttonText={"Toggle Origin"} onClick={toggleOrigin}/>

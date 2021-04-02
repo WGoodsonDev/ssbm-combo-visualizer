@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function ComboPath(props) {
-    const [strokeWidth, setStrokeWidth] = useState("3");
+    const [strokeWidth, setStrokeWidth] = useState("2");
     const [isTooltipOpen, setTooltipOpen] = useState(false);
 
     const highlight = () => {

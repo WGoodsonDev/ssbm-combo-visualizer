@@ -1,4 +1,4 @@
-.vizOuter {
+.viz-outer {
   width: 100vw;
   height: fit-content;
   background-color: $mineShaft;
@@ -6,9 +6,10 @@
   h3 {
     padding: 10px;
     color: $evenLighterGray;
+    text-align: center;
   }
 
-  .vizInner {
+  .viz-inner {
     z-index: 1;
     margin: auto;
     width: 80vw;
@@ -37,10 +38,19 @@
         // Flip y again to have text appear right-side-up
         transform: scaleY(-1);
       }
+      .heavy {
+        font: bold 12px serif;
+      }
+
     }
-
-
-
   }
 }
 
+.stats-area {
+  width: inherit;
+  height: fit-content;
+}
+
+.control-buttons {
+  display: inline-flex;
+}
