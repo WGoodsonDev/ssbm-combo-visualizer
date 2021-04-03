@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Combo from "./Combo";
 import { stageViewBoxes, stageNamesById } from "../../../util/data-scripts/Stages";
+import { attackMap, characterMap } from "../../../util/data-scripts/ConversionTables";
 import DebugInfo from "./DebugInfo";
 import StageBackground from "./StageBackground";
 import ControlButton from "../control/ControlButton";
@@ -9,7 +10,9 @@ function ComboViz(props) {
 
     const [comboDataArray, setComboDataArray] = useState([]);
     const [comboComponentArray, setComboComponentArray] = useState([]);
+    const [comboHitsArray, setComboHitsArray] = useState([]);
     const [currentComboIdx, setCurrentComboIdx] = useState(0);
+
     const [minComboLength, setMinComboLength] = useState(3);
 
     const [curatedData, setCuratedData] = useState({});
@@ -56,6 +59,7 @@ function ComboViz(props) {
         setCurrentComboIdx(0);
         setComboComponentArray([]);
         setComboDataArray([]);
+        setComboHitsArray([]);
         if(props.gameData){
             // Take game data, separate into combos and stats
             let {
@@ -78,7 +82,6 @@ function ComboViz(props) {
                 }
             });
             setComboDataArray(combosPlusFrames);
-            // console.log("comboDataArray: ", comboDataArray)
 
             // Construct array of Combo components
             const comboComponents = combosPlusFrames.map((comboAndFrames, idx) =>
@@ -88,11 +91,15 @@ function ComboViz(props) {
                 />
             );
             setComboComponentArray(comboComponents);
-            // console.log("comboComponentArray: ", comboComponentArray);
+
+
 
             // Extract detailed statistics from data
             // Stage
             const stageName = stageNamesById[settings.stageId];
+            // Characters
+            const p1Character = characterMap[settings.players[0].characterId];
+            const p2Character = characterMap[settings.players[1].characterId];
             // Player 1 Combos
             const p1ComboCount = filteredCombos.filter(combo => combo.playerIndex === 0).length;
             const p1DeathComboCount = filteredCombos.filter(combo => combo.playerIndex === 0 && combo.didKill).length;
@@ -118,6 +125,14 @@ function ComboViz(props) {
                 maxComboLength: maxComboLength,
                 deathComboCount: deathComboCount
             });
+
+            // Construct array of combos represented by the attacks that make up the combo
+            let comboMoves = filteredCombos.map(combo => {
+                return `${combo.playerIndex === 0 ? p1Character : p2Character }: ` + combo.moves.map(move => {
+                    return ` ${attackMap[move.moveId]} `;
+                })
+            });
+            setComboHitsArray(comboMoves);
         }
     }
 
@@ -142,6 +157,11 @@ function ComboViz(props) {
             </div>
             {props.gameData ?
                 <div className={"stats-area"}>
+                    <div className={"current-combo-hits"}>
+                        <p>
+                            { comboHitsArray.length? comboHitsArray[currentComboIdx] : null }
+                        </p>
+                    </div>
                     <table className={"combo-hits-table"}>
                         <caption>Current Combo Stats ({currentComboIdx + 1} / {curatedData?.totalComboCount})</caption>
                         <tbody>
