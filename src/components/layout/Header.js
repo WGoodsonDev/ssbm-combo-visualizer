@@ -28,6 +28,7 @@ function Header(props){
         <header>
             <div className="header">
                 <h2>SSBM COMBO VISUALIZER (v0.1.0)</h2>
+                <h3>by Bud McChud</h3>
             </div>
         </header>
     );

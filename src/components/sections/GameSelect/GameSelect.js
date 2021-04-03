@@ -7,15 +7,15 @@ function GameSelect(props) {
             <p>
                 {props.statusMessage}
             </p>
-            <button className={"get-game-btn"} onClick={props.getGame}>
+            <button className={"get-latest-game-btn"} onClick={props.getLatestGame}>
+                GET LATEST GAME
+            </button>
+            <button className={"get-random-game-btn"} onClick={props.getRandomGame}>
                 GET RANDOM GAME
             </button>
             <button className={"clear-games-btn"} onClick={props.clearGame}>
                 CLEAR GAME
             </button>
-            <div className={"game-card-list"} >
-                {props.children}
-            </div>
         </div>
     );
 }

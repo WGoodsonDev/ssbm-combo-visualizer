@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import http from "../../http-common";
 
-import ControlButton from "../visualizer/control/ControlButton";
-import StageBackground from "../visualizer/svg/StageBackground";
-import DebugInfo from "../visualizer/svg/DebugInfo";
 import ComboViz from "../visualizer/ComboViz";
 import GameSelect from "./GameSelect/GameSelect";
 
 import { stageIdxMap, characterMap } from "../../util/data-scripts/ConversionTables";
-import { stageViewBoxes } from "../../util/data-scripts/Stages";
-// import GameCard from "./GameSelect/GameCard";
-
-// const _ = require("lodash");
 
 
 /*
@@ -39,17 +32,16 @@ function VizWindow(props) {
     5: Yoshi's Story
      */
 
-    const getGame = async () => {
+    const getRandomGame = async () => {
         // Clear last game data
         clearGame();
         // Get new (random) game from DB, set as rawLoadedGame
-        console.log("Attempting to get a game. This may take a second...");
+        console.log("Attempting to get a random game. This may take a second...");
         setStatusMessage("Attempting to get a game. This may take a second...");
         await http.get("/games/getRandomGame")
             .then((res) => {
                 console.log("Successfully retrieved game")
                 setStatusMessage("Successfully retrieved game");
-                console.log(res.data);
                 setRawLoadedGame(res.data);
                 setCurrentStageId(stageIdxMap[res.data.settings.stageId]);
                 // console.log(JSON.stringify(rawLoadedGame, null, 2));
@@ -59,6 +51,25 @@ function VizWindow(props) {
                 setStatusMessage("Error: game retrieval failed");
             });
     };
+
+    const getLatestGame = async () => {
+        // Clear last game data
+        clearGame();
+        // Get new (latest) game from DB, set as rawLoadedGame
+        console.log("Attempting to get most recent game. This may take a second...");
+        setStatusMessage("Attempting to get most recent game. This may take a second...");
+        await http.get("/games/getMostRecentGame")
+            .then((res) => {
+                console.log("Successfully retrieved game");
+                setStatusMessage("Successfully retrieved game");
+                setRawLoadedGame(res.data);
+                setCurrentStageId(stageIdxMap[res.data.settings.stageId]);
+            })
+            .catch((err) => {
+                console.log(err);
+                setStatusMessage("Error: game retrieval failed");
+            })
+    }
 
     const clearGame = () => {
         setRawLoadedGame(undefined);
@@ -79,11 +90,11 @@ function VizWindow(props) {
                 <ComboViz gameData={rawLoadedGame}
                           stageId={currentStageId}
                 />
-                <GameSelect getGame={getGame}
+                <GameSelect getLatestGame={getLatestGame}
+                            getRandomGame={getRandomGame}
                             clearGame={clearGame}
-                            statusMessage={statusMessage}>
-
-                </GameSelect>
+                            statusMessage={statusMessage}
+                />
             </div>
         </section>
     )

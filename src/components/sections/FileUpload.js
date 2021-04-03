@@ -26,15 +26,15 @@ function FileUpload(props) {
 
         await UploadService.upload(currentFile, (event) => {
             setUploadStatusMessage("Attempting to upload file...");
+            console.log("Attempting to upload file...");
         })
-            .then((response) => {
-                setUploadStatusMessage("File successfully uploaded")
-            })
-            .then((files) => {
-
+            .then(() => {
+                setUploadStatusMessage("File successfully uploaded");
+                console.log("File successfully uploaded");
             })
             .catch((err) => {
                 setUploadStatusMessage("ERROR: could not upload the file");
+                console.log(err);
                 setCurrentFile(undefined);
             });
     };
