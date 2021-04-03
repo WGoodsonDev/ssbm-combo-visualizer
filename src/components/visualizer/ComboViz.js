@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Combo from "./Combo";
-import { stageViewBoxes, stageNamesById } from "../../../util/data-scripts/Stages";
-import { attackMap, characterMap } from "../../../util/data-scripts/ConversionTables";
-import DebugInfo from "./DebugInfo";
-import StageBackground from "./StageBackground";
-import ControlButton from "../control/ControlButton";
+import Combo from "./svg/Combo";
+import { stageViewBoxes, stageNamesById } from "../../util/data-scripts/Stages";
+import { attackMap, characterMap } from "../../util/data-scripts/ConversionTables";
+import DebugInfo from "./svg/DebugInfo";
+import StageBackground from "./svg/StageBackground";
+import ControlButton from "./control/ControlButton";
 
 function ComboViz(props) {
 

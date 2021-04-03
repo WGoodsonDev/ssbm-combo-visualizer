@@ -4,7 +4,7 @@ import http from "../../http-common";
 import ControlButton from "../visualizer/control/ControlButton";
 import StageBackground from "../visualizer/svg/StageBackground";
 import DebugInfo from "../visualizer/svg/DebugInfo";
-import ComboViz from "../visualizer/svg/ComboViz";
+import ComboViz from "../visualizer/ComboViz";
 import GameSelect from "./GameSelect/GameSelect";
 
 import { stageIdxMap, characterMap } from "../../util/data-scripts/ConversionTables";

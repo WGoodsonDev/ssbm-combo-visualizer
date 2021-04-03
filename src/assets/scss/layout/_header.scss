@@ -4,6 +4,20 @@ $header--color: (
 );
 header {
   background-color: $lighterGray;
+  text-align: center;
+  padding: 20px;
+
+  .container {
+    overflow: hidden;
+
+    a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+  }
 
   ul {
     display: inline;

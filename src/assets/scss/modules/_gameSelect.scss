@@ -1,9 +1,10 @@
 .game-select {
-  width: 100vw;
   height: fit-content;
+  padding: 10px;
   background-color: $lighterGray;
   border: 2px solid black;
   text-align: center;
+  font-weight: bold;
 
   button {
     display: inline;

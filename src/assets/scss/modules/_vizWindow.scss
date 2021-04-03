@@ -1,5 +1,5 @@
 .viz-outer {
-  width: 100vw;
+  width: 100%;
   height: fit-content;
   background-color: $mineShaft;
 
@@ -12,7 +12,7 @@
   .viz-inner {
     z-index: 1;
     margin: auto;
-    width: 100vw;
+    width: inherit;
     height: 60vh;
     background-color: $lighterGray;
     -moz-user-select: none;
@@ -27,6 +27,7 @@
       height: inherit;
     }
     svg {
+      margin: auto;
       z-index: 10;
       width: inherit;
       height: inherit;
@@ -51,6 +52,7 @@
   width: inherit;
   height: fit-content;
   text-align: center;
+  color: $evenLighterGray;
 
   p {
     font-size: 22px;
@@ -68,7 +70,11 @@
 }
 
 .control-buttons {
-  width: inherit;
   margin: auto;
   text-align: center;
+  padding: 10px;
+
+  div {
+    padding-bottom: 10px;
+  }
 }

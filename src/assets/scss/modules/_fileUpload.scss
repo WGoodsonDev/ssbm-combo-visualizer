@@ -1,6 +1,6 @@
-.upload {
-  width: 100vw;
+.upload-section {
   height: fit-content;
+  padding: 10px;
   background-color: $lighterGray;
   border: 2px solid black;
   -webkit-user-select: none;
@@ -13,7 +13,8 @@
 .dragDropArea {
   margin: auto;
   width: 200px;
-  height: 200px;
+  height: 100px;
+  padding: 20px;
   background-color: $mineShaft;
   color: white;
   cursor: pointer;

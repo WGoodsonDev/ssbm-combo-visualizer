@@ -40,30 +40,32 @@ function FileUpload(props) {
     };
 
     return (
-        <div className={"upload"}>
-            <Dropzone onDrop={handleDrop} accept={".slp"} multiple={false}>
-                {({getRootProps, getInputProps}) => (
-                    <section>
-                        <div className={"dragDropArea"} {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            <p>Drag and drop a .slp file here, or click to select file</p>
-                        </div>
-                    </section>
-                )}
-            </Dropzone>
-            <div className={"progress"}>
-                <h5>
-                    {uploadStatusMessage}
-                </h5>
+        <section className={"upload-section"}>
+            <div className={"upload"}>
+                <Dropzone onDrop={handleDrop} accept={".slp"} multiple={false}>
+                    {({getRootProps, getInputProps}) => (
+                        <section>
+                            <div className={"dragDropArea"} {...getRootProps()}>
+                                <input {...getInputProps()} />
+                                <p>Drag and drop a .slp file here, or click to select file</p>
+                            </div>
+                        </section>
+                    )}
+                </Dropzone>
+                <div className={"progress"}>
+                    <h5>
+                        {uploadStatusMessage}
+                    </h5>
+                </div>
+                <button className={"submitButton"}
+                        disabled={!validSlpUploaded}
+                        type={"button"}
+                        onClick={uploadFile}
+                >
+                    Submit
+                </button>
             </div>
-            <button className={"submitButton"}
-                    disabled={!validSlpUploaded}
-                    type={"button"}
-                    onClick={uploadFile}
-            >
-                Submit
-            </button>
-        </div>
+        </section>
     );
 }
 
