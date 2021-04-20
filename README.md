@@ -66,6 +66,13 @@
 
 To get a local copy up and running follow these simple steps.
 
+### Prerequisites
+
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
 ### Installation
 
 1. Clone the repo
@@ -75,6 +82,10 @@ To get a local copy up and running follow these simple steps.
 2. Install NPM packages
    ```sh
    npm install
+   ```
+3. Run local copy
+   ```shell
+   npm start
    ```
 
 
@@ -110,7 +121,7 @@ Distributed under the ISC License.
 <!-- CONTACT -->
 ## Contact
 
-Warren Goodson - warren.goodson1@gmail.com
+Warren Goodson - [LinkedIn](https://www.linkedin.com/in/warren-goodson/) - warren.goodson1@gmail.com
 
 Project Link: [https://github.com/WGoodsonDev/ssbm-combo-visualizer](https://github.com/WGoodsonDev/ssbm-combo-visualizer)
 
